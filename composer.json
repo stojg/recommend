@@ -1,0 +1,23 @@
+{
+    "name": "stojg/datamine",
+    "type": "library",
+    "description": "Library for mining",
+    "keywords": [],
+    "homepage": "https://stojg.se",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stig Lindqvist",
+            "email": "stojg.lindqvist@gmail.com"
+        }
+    ],
+	"autoload": {
+    "psr-0": {
+        "stojg\\datamine\\": "src/"
+		}
+	},
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "minimum-stability": "dev"
+}
