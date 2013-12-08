@@ -64,19 +64,5 @@
 		"Phoenix": 4.0,
 		"Slightly Stoopid": 2.5,
 		"The Strokes": 3.0
-	},
-	"Clara": {
-		"Blues Traveler": 4.75,
-		"Norah Jones": 4.5,
-		"Phoenix": 5,
-		"The Strokes": 4.25,
-		"Weird Al": 4
-	},
-	"Robert": {
-		"Blues Traveler": 4,
-		"Norah Jones": 3,
-		"Phoenix": 5,
-		"The Strokes": 2,
-		"Weird Al": 1
 	}
 }

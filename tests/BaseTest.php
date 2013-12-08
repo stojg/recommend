@@ -74,4 +74,11 @@ class BaseTest extends \PHPUnit_Framework_TestCase {
 		$pearson = $base->paerson($this->users['Angelica'], $this->users['Bosse']);
 		$this->assertEquals(0, $pearson);
 	}
+	
+	function testCosinSimilarity() {
+		$base = new Base();
+		$users = json_decode(file_get_contents(__DIR__. '/fixtures/perfect_users.json'), true);
+		$result = $base->cosin($users['Clara'], $users['Robert']);
+		$this->assertEquals(0.93515345857052, $result);
+	}
 }
