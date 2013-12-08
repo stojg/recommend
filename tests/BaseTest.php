@@ -50,4 +50,28 @@ class BaseTest extends \PHPUnit_Framework_TestCase {
 		$recommendations = $base->recommend('Angelica', $this->users);
 		$this->assertEquals(0, count($recommendations));
 	}
+	
+	function testPaersonAngelicaBill() {
+		$base = new Base();
+		$pearson = $base->paerson($this->users['Angelica'], $this->users['Bill']);
+		$this->assertEquals(-0.90405349906826993, $pearson);
+	}
+	
+	function testPaersonAngelicaHaily() {
+		$base = new Base();
+		$pearson = $base->paerson($this->users['Angelica'], $this->users['Hailey']);
+		$this->assertEquals(0.42008402520840293, $pearson);
+	}
+	
+	function testPaersonAngelicaJordyn() {
+		$base = new Base();
+		$pearson = $base->paerson($this->users['Angelica'], $this->users['Jordyn']);
+		$this->assertEquals(0.76397486054754316, $pearson);
+	}
+	
+	function testPaersonNoMatch() {
+		$base = new Base();
+		$pearson = $base->paerson($this->users['Angelica'], $this->users['Bosse']);
+		$this->assertEquals(0, $pearson);
+	}
 }
