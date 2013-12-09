@@ -25,7 +25,10 @@ class Base {
 	}
 
 	/**
-	 * Single pass version of the paerson koeefi
+	 * Single pass version of the paerson
+	 * 
+	 * Use if the data is subject to grade-inﬂation (different users 
+	 * may be using different scales) 
 	 * 
 	 * @param array $ratings1
 	 * @param array  $ratings2
@@ -69,7 +72,7 @@ class Base {
 	}
 	
 	/**
-	 * 
+	 * Use if the data is sparse 
 	 */
 	public function cosin($rating1, $rating2) {
 		$dotProduct = 0;
@@ -123,6 +126,10 @@ class Base {
 	
 	/**
 	 * Computes the Minkowski distance
+	 * 
+	 * If the data is dense (allmost all attributes have a non
+	 * zero value) and the magnitude of the attributes values
+	 * are important, this is a good similarity comparisator
 	 * 
 	 * Both rating1 and rating2 are an array of the form
 	 * ['The Strokes'=> 3.0, 'Slightly Stoopid' =>  2.5, ...]
