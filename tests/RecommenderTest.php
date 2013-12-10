@@ -5,7 +5,7 @@ namespace stojg\datamine\tests;
 use stojg\datamine\Recommender;
 use stojg\datamine\Manhattan;
 use stojg\datamine\Paerson;
-use stojg\datamine\Cosin;
+use stojg\datamine\Cosine;
 
 class RecommenderTest extends \PHPUnit_Framework_TestCase {
 	
@@ -62,15 +62,13 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(2.5, $recommendations[2]['value']);
 	}
 	
-	function testRecommendCosinHailey() {
+	function testRecommendCosineHailey() {
 		$base = new Recommender('Hailey', $this->set);
-		$recommendations = $base->recommend(new Cosin());
-		$this->assertEquals(3, count($recommendations));
-		$this->assertEquals('Blues Traveler', $recommendations[0]['key']);
+		$recommendations = $base->recommend(new Cosine());
+		$this->assertEquals(2, count($recommendations));
+		$this->assertEquals('Phoenix', $recommendations[0]['key']);
 		$this->assertEquals(5.0, $recommendations[0]['value']);
-		$this->assertEquals('Phoenix', $recommendations[1]['key']);
-		$this->assertEquals(5, $recommendations[1]['value']);
-		$this->assertEquals('Slightly Stoopid', $recommendations[2]['key']);
-		$this->assertEquals(1, $recommendations[2]['value']);
+		$this->assertEquals('Slightly Stoopid', $recommendations[1]['key']);
+		$this->assertEquals(4.5, $recommendations[1]['value']);
 	}
 }
