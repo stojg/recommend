@@ -68,12 +68,12 @@ class Recommender
                 continue;
             }
             $distance = $strategy->run($itemData, $this->set[$this->item]);
-            if($distance === false) {
+            if ($distance === false) {
                 continue;
             }
             $distances[] = array('key' => $key, 'value' => $distance);
         }
-        if(!count($distances)) {
+        if (!count($distances)) {
             return false;
         }
         $this->sort($distances, true);
