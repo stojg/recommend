@@ -120,7 +120,9 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
         
         $recommender = new \stojg\datamine\Recommender('Blair', $artistRatings);
         $recommendations = $recommender->recommend(new \stojg\datamine\strategy\Manhattan());
-        var_export($recommendations);
+        
+        $this->assertEquals('Norah Jones', $recommendations[0]['key']);
+        $this->assertEquals(4, $recommendations[0]['value']);
         
     }
 }
