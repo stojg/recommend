@@ -5,6 +5,9 @@ filter:
     excluded_paths: [vendor/*]
 
 tools:
+    php_analyzer: true
+    sensiolabs_security_checker: true
+    php_mess_detector: true
     php_code_coverage: true
     php_cpd: true
     php_pdepend:
