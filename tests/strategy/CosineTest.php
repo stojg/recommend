@@ -1,8 +1,8 @@
 <?php
 
-namespace stojg\datamine\tests;
+namespace stojg\recommend\tests;
 
-use stojg\datamine\strategy\Cosine;
+use stojg\recommend\strategy\Cosine;
 
 class CosineTest extends \PHPUnit_Framework_TestCase
 {

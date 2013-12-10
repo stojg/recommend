@@ -1,5 +1,5 @@
 {
-    "name": "stojg/datamine",
+    "name": "stojg/recommend",
     "type": "library",
     "description": "Library for mining",
     "keywords": [],
@@ -13,7 +13,7 @@
     ],
 	"autoload": {
     "psr-0": {
-        "stojg\\datamine\\": "src/"
+        "stojg\\recommend\\": "src/"
 		}
 	},
     "require": {

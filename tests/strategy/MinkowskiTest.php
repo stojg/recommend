@@ -1,8 +1,8 @@
 <?php
 
-namespace stojg\datamine\tests;
+namespace stojg\recommend\tests;
 
-use stojg\datamine\strategy\Minkowski;
+use stojg\recommend\strategy\Minkowski;
 
 class MinkowskiTest extends \PHPUnit_Framework_TestCase
 {

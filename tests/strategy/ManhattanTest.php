@@ -1,8 +1,8 @@
 <?php
 
-namespace stojg\datamine\tests;
+namespace stojg\recommend\tests;
 
-use stojg\datamine\strategy\Manhattan;
+use stojg\recommend\strategy\Manhattan;
 
 class ManhattanTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace stojg\datamine\tests;
+namespace stojg\recommend\tests;
 
-use stojg\datamine\strategy\Paerson;
+use stojg\recommend\strategy\Paerson;
 
 class PaersonTest extends \PHPUnit_Framework_TestCase
 {

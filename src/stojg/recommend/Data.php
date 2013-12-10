@@ -1,12 +1,12 @@
 <?php
 
-namespace stojg\datamine;
+namespace stojg\recommend;
 
 /**
  * This class contains behaviour for finding recommendations 
  * 
  */
-class Recommender
+class Data
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace stojg\datamine\strategy;
+namespace stojg\recommend\strategy;
 
 /**
  * Computes the Manhattan distance. 

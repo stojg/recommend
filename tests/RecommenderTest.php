@@ -1,13 +1,13 @@
 <?php
 
-namespace stojg\datamine\tests;
+namespace stojg\recommend\tests;
 
-use stojg\datamine\Recommender;
-use stojg\datamine\strategy\Manhattan;
-use stojg\datamine\strategy\Paerson;
-use stojg\datamine\strategy\Cosine;
+use stojg\recommend\Data;
+use stojg\recommend\strategy\Manhattan;
+use stojg\recommend\strategy\Paerson;
+use stojg\recommend\strategy\Cosine;
 
-class RecommenderTest extends \PHPUnit_Framework_TestCase
+class DataTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $set;
@@ -20,8 +20,8 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
 
     public function testRecommendManhattanHailey()
     {
-        $base = new Recommender('Hailey', $this->set);
-        $recommendations = $base->recommend(new Manhattan());
+        $data = new Data('Hailey', $this->set);
+        $recommendations = $data->recommend(new Manhattan());
         $this->assertEquals(3, count($recommendations));
         $this->assertEquals('Phoenix', $recommendations[0]['key']);
         $this->assertEquals(4.0, $recommendations[0]['value']);
@@ -33,7 +33,7 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
 
     public function testRecommendManhattanChan()
     {
-        $base = new Recommender('Chan', $this->set);
+        $base = new Data('Chan', $this->set);
         $recommendations = $base->recommend(new Manhattan());
         $this->assertEquals(2, count($recommendations));
         $this->assertEquals('The Strokes', $recommendations[0]['key']);
@@ -42,7 +42,7 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
 
     public function testRecommendManhattanSam()
     {
-        $base = new Recommender('Sam', $this->set);
+        $base = new Data('Sam', $this->set);
         $recommendations = $base->recommend(new Manhattan());
         $this->assertEquals(1, count($recommendations));
         $this->assertEquals('Deadmau5', $recommendations[0]['key']);
@@ -51,14 +51,14 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
 
     public function testRecommendManhattanAngelica()
     {
-        $base = new Recommender('Angelica', $this->set);
+        $base = new Data('Angelica', $this->set);
         $recommendations = $base->recommend(new Manhattan());
         $this->assertEquals(0, count($recommendations));
     }
 
     public function testRecommendPaersonHailey()
     {
-        $base = new Recommender('Hailey', $this->set);
+        $base = new Data('Hailey', $this->set);
         $recommendations = $base->recommend(new Paerson());
         $this->assertEquals(3, count($recommendations));
         $this->assertEquals('Blues Traveler', $recommendations[0]['key']);
@@ -72,14 +72,14 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
     public function testRecommendPaersonNoMatch()
     {
         $set = json_decode(file_get_contents(__DIR__ . '/fixtures/users_nomatch.json'), true);
-        $base = new Recommender('Andrea', $set);
+        $base = new Data('Andrea', $set);
         $recommendations = $base->recommend(new Paerson());
         $this->assertEquals(0, count($recommendations));
     }
 
     public function testRecommendCosineHailey()
     {
-        $base = new Recommender('Hailey', $this->set);
+        $base = new Data('Hailey', $this->set);
         $recommendations = $base->recommend(new Cosine());
         $this->assertEquals(2, count($recommendations));
         $this->assertEquals('Phoenix', $recommendations[0]['key']);
@@ -118,8 +118,8 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
             )
         );
         
-        $recommender = new \stojg\datamine\Recommender('Blair', $artistRatings);
-        $recommendations = $recommender->recommend(new \stojg\datamine\strategy\Manhattan());
+        $recommender = new \stojg\recommend\Data('Blair', $artistRatings);
+        $recommendations = $recommender->recommend(new \stojg\recommend\strategy\Manhattan());
         
         $this->assertEquals('Norah Jones', $recommendations[0]['key']);
         $this->assertEquals(4, $recommendations[0]['value']);
