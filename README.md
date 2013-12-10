@@ -1,4 +1,4 @@
-# Data mine
+# Recommend
 
 [![Build Status](https://travis-ci.org/stojg/recommend.png?branch=master)](https://travis-ci.org/stojg/recommend)
 [![Code Coverage](https://scrutinizer-ci.com/g/stojg/recommend/badges/coverage.png?s=5938cb4642b77c2ea081f4771f096134b93d3494)](https://scrutinizer-ci.com/g/stojg/recommend/)
