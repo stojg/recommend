@@ -1,5 +1,5 @@
 before_commands:
-    - "composer install --prefer-dist"
+    - "composer install"
 
 filter:
     excluded_paths: [vendor/*]
@@ -9,3 +9,8 @@ tools:
     php_cpd: true
     php_pdepend:
         excluded_dirs: [vendor]
+    php_code_sniffer:
+        extensions:
+            - php
+        filter:
+            excluded_paths: [vendor/*]
