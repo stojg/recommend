@@ -2,12 +2,32 @@
 
 namespace stojg\datamine;
 
-class Base {
+class Recommender {
+	
+	/**
+	 *
+	 * @var array
+	 */
+	protected  $item = '';
+	
+	/**
+	 *
+	 * @var array
+	 */
+	protected $set = array();
+
+
+	public function __construct($item, $set) {
+		$this->item = $item;
+		$this->set = $set;
+	}
 
 	/**
 	 * Give list of recommendations
 	 */
-	public function recommend($username, $users) {
+	public function recommend() {
+		$username = $this->item;
+		$users = $this->set;
 		$nearest = $this->nearestNeighbor($username, $users)[0]['key'];
 		$recommendations = array();
 		$neighborRatings = $users[$nearest];
@@ -106,25 +126,6 @@ class Base {
 	}
 	
 	/**
-	 * creates a sorted list of users based on their distance to username
-	 * 
-	 */
-	protected function nearestNeighbor($username, $users) {
-		 $distances = array();
-		 foreach($users as $user => $data) {
-			 if($user == $username) { continue; }
-			 $distance = $this->manhattanDistance($users[$user], $users[$username]);
-			 $distances[] = array('key' => $user, 'value' => $distance);
-		 }
-		 usort($distances, function($a, $b) {
-			 if($a['value'] > $b['value']) { return 1; }
-			 if($a['value'] < $b['value']) { return -1; }
-			 return 0;
-		 });
-		 return $distances;
-	}
-	
-	/**
 	 * Computes the Minkowski distance
 	 * 
 	 * If the data is dense (allmost all attributes have a non
@@ -152,4 +153,24 @@ class Base {
 		} 
 		return 0;
 	}
+	
+	/**
+	 * creates a sorted list of users based on their distance to username
+	 * 
+	 */
+	protected function nearestNeighbor($username, $users) {
+		 $distances = array();
+		 foreach($users as $user => $data) {
+			 if($user == $username) { continue; }
+			 $distance = $this->manhattanDistance($users[$user], $users[$username]);
+			 $distances[] = array('key' => $user, 'value' => $distance);
+		 }
+		 usort($distances, function($a, $b) {
+			 if($a['value'] > $b['value']) { return 1; }
+			 if($a['value'] < $b['value']) { return -1; }
+			 return 0;
+		 });
+		 return $distances;
+	}
+	
 }
