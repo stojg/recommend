@@ -14,3 +14,6 @@ tools:
             - php
         filter:
             excluded_paths: [vendor/*]
+        config:
+            encoding: utf8
+            standard: "PSR2"
