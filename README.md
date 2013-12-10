@@ -16,7 +16,7 @@ use cases for it:
 
 The easiest way to get this installed in your project is by using composer
 
-	composer install stojg/datamine
+	composer require stojg/recommend
 
 ## Usage
 
