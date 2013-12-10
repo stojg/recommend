@@ -42,7 +42,7 @@ class Minkowski
         $commonRatings = false;
         foreach ($rating1 as $key => $rating) {
             if (isset($rating2[$key])) {
-                $distance += pow(abs($rating1[$key] - $rating2[$key]), $this->r);
+                $distance += pow(abs($rating - $rating2[$key]), $this->r);
                 $commonRatings = true;
             }
         }
