@@ -24,14 +24,14 @@ class Paerson
         $rating1SumSqr = 0;
         $rating2Sum = 0;
         $rating2SumSqr = 0;
-        foreach ($ratings1 as $item => $rating) {
+        foreach ($ratings1 as $item => $rating1) {
             if (!isset($ratings2[$item])) {
                 continue;
             }
             $numCoRatedItems += 1;
-            $dotProduct += $ratings1[$item] * $ratings2[$item];
-            $rating1Sum += $ratings1[$item];
-            $rating1SumSqr += pow($ratings1[$item], 2);
+            $dotProduct += $rating1 * $ratings2[$item];
+            $rating1Sum += $rating1;
+            $rating1SumSqr += pow($rating1, 2);
             $rating2Sum += $ratings2[$item];
             $rating2SumSqr += pow($ratings2[$item], 2);
         }
