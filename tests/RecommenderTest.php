@@ -81,11 +81,11 @@ class DataTest extends \PHPUnit_Framework_TestCase
     {
         $base = new Data('Hailey', $this->set);
         $recommendations = $base->recommend(new Cosine());
-        $this->assertEquals(2, count($recommendations));
-        $this->assertEquals('Phoenix', $recommendations[0]['key']);
+        $this->assertEquals(3, count($recommendations));
+        $this->assertEquals('Blues Traveler', $recommendations[0]['key']);
         $this->assertEquals(5.0, $recommendations[0]['value']);
-        $this->assertEquals('Slightly Stoopid', $recommendations[1]['key']);
-        $this->assertEquals(4.5, $recommendations[1]['value']);
+        $this->assertEquals('Phoenix', $recommendations[1]['key']);
+        $this->assertEquals(5.0, $recommendations[1]['value']);
     }
     
     public function testFromReadme()

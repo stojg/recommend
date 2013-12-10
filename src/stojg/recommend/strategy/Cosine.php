@@ -21,6 +21,9 @@ class Cosine
         $dotProduct = 0;
         $sqrLenght1 = 0;
         foreach ($rating1 as $item => $rating) {
+            if(!isset($rating2[$item])){
+                continue;
+            }
             $sqrLenght1 += pow($rating, 2);
             $dotProduct += $rating * $rating2[$item];
         }

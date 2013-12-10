@@ -39,7 +39,7 @@ class PaersonTest extends \PHPUnit_Framework_TestCase
     public function testPaersonNoMatch()
     {
         $paerson = new Paerson();
-        $score = $paerson->run($this->set['Angelica'], $this->set['Bosse']);
+        $score = $paerson->run($this->set['Angelica'], array());
         $this->assertEquals(0, $score);
     }
 }
