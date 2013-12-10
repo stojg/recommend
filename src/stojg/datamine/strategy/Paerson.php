@@ -1,6 +1,6 @@
 <?php
 
-namespace stojg\datamine;
+namespace stojg\datamine\strategy;
 
 /**
  * Use if the data is subject to grade-inﬂation (different users may be using different scales) 

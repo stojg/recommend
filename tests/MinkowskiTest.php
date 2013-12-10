@@ -2,7 +2,7 @@
 
 namespace stojg\datamine\tests;
 
-use stojg\datamine\Minkowski;
+use stojg\datamine\strategy\Minkowski;
 
 class MinkowskiTest extends \PHPUnit_Framework_TestCase {
 	

@@ -2,7 +2,7 @@
 
 namespace stojg\datamine\tests;
 
-use stojg\datamine\Paerson;
+use stojg\datamine\strategy\Paerson;
 
 class PaersonTest extends \PHPUnit_Framework_TestCase {
 	

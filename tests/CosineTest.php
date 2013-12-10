@@ -2,7 +2,7 @@
 
 namespace stojg\datamine\tests;
 
-use stojg\datamine\Cosine;
+use stojg\datamine\strategy\Cosine;
 
 class CosineTest extends \PHPUnit_Framework_TestCase {
 	

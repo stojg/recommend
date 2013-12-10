@@ -3,9 +3,9 @@
 namespace stojg\datamine\tests;
 
 use stojg\datamine\Recommender;
-use stojg\datamine\Manhattan;
-use stojg\datamine\Paerson;
-use stojg\datamine\Cosine;
+use stojg\datamine\strategy\Manhattan;
+use stojg\datamine\strategy\Paerson;
+use stojg\datamine\strategy\Cosine;
 
 class RecommenderTest extends \PHPUnit_Framework_TestCase {
 	

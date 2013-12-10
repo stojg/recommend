@@ -1,6 +1,6 @@
 <?php
 
-namespace stojg\datamine;
+namespace stojg\datamine\strategy;
 
 /**
  * Cosine similarity is a measure of similarity between two vectors of an inner product space that measures the 

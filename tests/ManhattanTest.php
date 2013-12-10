@@ -2,7 +2,7 @@
 
 namespace stojg\datamine\tests;
 
-use stojg\datamine\Manhattan;
+use stojg\datamine\strategy\Manhattan;
 
 class ManhattanTest extends \PHPUnit_Framework_TestCase {
 	

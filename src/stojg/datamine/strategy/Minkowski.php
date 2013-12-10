@@ -1,6 +1,6 @@
 <?php
 
-namespace stojg\datamine;
+namespace stojg\datamine\strategy;
 
 /**
  * Computes the Minkowski distance
