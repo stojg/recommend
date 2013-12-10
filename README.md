@@ -1,7 +1,11 @@
 # Data mine
 
-This library makes it easy to find recommendations and similarities between different sets. One use case would be
-to recommend a list of music albums/artists to a user or an article that is similar to the current one the user is reading.
+This library makes it easier to find recommendations and similarities between different things. There are a couple of 
+use cases for it:
+ 
+  * Recommend a list of music albums/artists to a user
+  * Recommend an article that is similar to the current one that a user is reading
+  * Find other users that have the same values as another user (think matchmaking ;)
 
 ## Installation
 
@@ -11,7 +15,7 @@ The easiest way to get this installed in your project is by using composer
 
 ## Usage
 
-Presume that we have a set of data where users have rated artists within a scale of one to five:
+Presume that we have some data where users have rated artists within a scale of one to five:
 
 	$artistRatings = array(
 		"Abe" => array(
@@ -41,7 +45,7 @@ Presume that we have a set of data where users have rated artists within a scale
 		)
     );
 
-If we wanted to find out which artists that Blair might like, we run the recommender like this:
+If we want to find artists that _Blair_ might like, we run the `Recommender` like this:
 
 	$recommender = new \stojg\datamine\Recommender('Blair', $artistRatings);
 	$recommendations = $recommender->recommend(new \stojg\datamine\strategy\Manhattan());
@@ -60,12 +64,11 @@ The result of that computation would be:
 	  )
 	)
 
-This means that Blair probably should try Norah Jones, she might like it. The Strokes will probably not be to her 
-liking.
+This means that _Blair_ might like `Norah Jones`. The Strokes on the other hand will fit her taste.
 
-The Recommender tries to find someone in the $artistRatings data that have rated artist similar to to Blair. In this 
-case it turns out to be Abe, so it then tries to find artists that Abe have rated but not Blair and give them back as 
-recommendations.
+The `Recommender` works by finding someone in the `$artistRatings` that have rated artist similar to to _Blair_. In this 
+case it turns out to be _Abe_, so it then tries to find artists that _Abe_ have rated but not _Blair_ and return them 
+as a list of recommendations.
 
 How the 'nearest' neighbour is found depends on which strategy that is chosen and how big and dense the dataset is.
 
@@ -82,15 +85,15 @@ format:
 
 ## Strategies
 
-There currently three (four, depending how you are counting) strategies and which one to pick depends on how the data is
-organised.
+There are currently three (four, depending how you are counting) strategies and which one to pick depends on how the 
+data is organized and populated.
 
 ### Minkowski
 
-If the data is dense (almost all attributes have a non zero value) and the magnitude (rating) of the attributes values
-are important, this is a good similarity comparisator.
+If the data is dense (almost all objectID have a non zero rating) and the magnitude (rating) of the attributes values
+are important, this is a good strategy.
 
-It can be have a defined dimenstion from 1 and up. The bigger the dimenstion is, the bigger the difference between the
+It can be have a defined "dimension" from 1 and up. The bigger the dimension is, the bigger the difference between the
 "score" will be.
 
 ### Manhattan
@@ -99,17 +102,17 @@ Manhattan is a shortcut for a Minkowski with a dimension of one.
 
 ### Paerson
 
-Use if the data is subject to grade-inﬂation. This means that the I might rate most items between 2 to 4, where as you 
-rate most things between 4-5 and Glenn is all over the board with rating from 1 to 5.
+Use this strategy if the data is subject to grade-inflation.
 
-This similarity algorithm tries to compensate the fact that my 2 is equal to your 4 in rating.
+I.e. if I rate most items between 2-4 and you rate things between 4-5 this strategy tries to compensate the fact that my
+ worst (2) is equal to your worst (4).
 
 ### Cosine
 
-This is the strategy to pick if the data is sparse. That is if you have a lot or artists in the dataset that hasn't been
-rated at all by many users. If you have a list with ten thousand artist, it quiet likely that the users only listened
-and rated a few of them.
+This is the strategy to pick if the data is sparse.
 
-It basically disregard the null values so they don't influence the similarity score.
+I.e. If there is a list with ten thousand artists, it quite likely that the users only listened and rated a few of them.
+
+It basically disregard the _null_ values so they don't influence the similarity score.
 
 
