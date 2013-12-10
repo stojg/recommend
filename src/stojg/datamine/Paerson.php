@@ -36,7 +36,7 @@ class Paerson {
 		
 		// There is no correlation at all
 		if($numCoRatedItems == 0) {
-			return 0;
+			return false;
 		}
 		
 		$denominator = sqrt(
@@ -45,7 +45,7 @@ class Paerson {
 		);
 		
 		if($denominator == 0) {
-			return 0;
+			return false;
 		}
 		
 		// the closer abs(paerson) is to 1 to better correlation is it

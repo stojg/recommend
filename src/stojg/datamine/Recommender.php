@@ -37,6 +37,9 @@ class Recommender {
 	 */
 	public function recommend($strategy) {
 		$nearest = $this->findNearest($strategy);
+		if($nearest === false) {
+			return array();
+		}
 		$recommendations = array();
 		foreach($this->set[$nearest] as $item => $rating) {
 			// The item has been already been rated
