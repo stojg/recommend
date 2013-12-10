@@ -5,7 +5,7 @@ namespace stojg\datamine\strategy;
 /**
  * Computes the Minkowski distance
  * 
- * If the data is dense (allmost all attributes have a non
+ * If the data is dense (almost all attributes have a non
  * zero value) and the magnitude of the attributes values
  * are important, this is a good similarity comparisator
  *

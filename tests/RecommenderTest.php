@@ -87,4 +87,40 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Slightly Stoopid', $recommendations[1]['key']);
         $this->assertEquals(4.5, $recommendations[1]['value']);
     }
+    
+    public function testFromReadme()
+    {
+        $artistRatings = array(
+            "Abe" => array(
+                "Blues Traveler" => 3,
+                "Broken Bells" => 2,
+                "Norah Jones" => 4,
+                "Phoenix" => 5,
+                "Slightly Stoopid" => 1,
+                "The Strokes" => 2,
+                "Vampire Weekend" => 2
+            ),
+            "Blair" => array(
+                "Blues Traveler" => 2,
+                "Broken Bells" => 3,
+                "Deadmau5" => 4,
+                "Phoenix" => 2,
+                "Slightly Stoopid" => 3,
+                "Vampire Weekend" => 3
+            ),
+            "Clair" => array(
+                "Blues Traveler" => 5,
+                "Broken Bells" => 1,
+                "Deadmau5" => 1,
+                "Norah Jones" => 3,
+                "Phoenix" => 5,
+                "Slightly Stoopid" => 1
+            )
+        );
+        
+        $recommender = new \stojg\datamine\Recommender('Blair', $artistRatings);
+        $recommendations = $recommender->recommend(new \stojg\datamine\strategy\Manhattan());
+        var_export($recommendations);
+        
+    }
 }
