@@ -26,7 +26,7 @@ class Cosin {
 		}
 		$length2 = sqrt($sqrLength2);
 		
-		return $dotProduct / ($length1 * $length2);
+		return abs($dotProduct / ($length1 * $length2));
 	}
 	
 }
