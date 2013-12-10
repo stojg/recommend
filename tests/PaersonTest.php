@@ -16,19 +16,19 @@ class PaersonTest extends \PHPUnit_Framework_TestCase {
 	function testPaersonAngelicaBill() {
 		$paerson = new Paerson();
 		$score = $paerson->run($this->set['Angelica'], $this->set['Bill']);
-		$this->assertEquals(-0.90405349906826993, $score);
+		$this->assertEquals(0.09594650093173, $score);
 	}
 	
 	function testPaersonAngelicaHaily() {
 		$paerson = new Paerson();
 		$score = $paerson->run($this->set['Angelica'], $this->set['Hailey']);
-		$this->assertEquals(0.42008402520840293, $score);
+		$this->assertEquals(0.5799159747916, $score);
 	}
 	
 	function testPaersonAngelicaJordyn() {
 		$paerson = new Paerson();
 		$score = $paerson->run($this->set['Angelica'], $this->set['Jordyn']);
-		$this->assertEquals(0.76397486054754316, $score);
+		$this->assertEquals(0.23602513945246, $score);
 	}
 	
 	function testPaersonNoMatch() {
