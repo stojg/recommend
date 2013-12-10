@@ -16,8 +16,8 @@ class Paerson {
 	 * @return float
 	 */
 	public function run($ratings1, $ratings2) {
-		$coRatedItems = 0;
-		$combinedSum = 0;
+		$numCoRatedItems = 0;
+		$dotProduct = 0;
 		$rating1Sum = 0;
 		$rating1SumSqr = 0;
 		$rating2Sum = 0;
@@ -26,29 +26,30 @@ class Paerson {
 			if(!isset($ratings2[$item])) {
 				continue;
 			}
-			$coRatedItems += 1;
-			$combinedSum += $ratings1[$item] * $ratings2[$item];
+			$numCoRatedItems += 1;
+			$dotProduct += $ratings1[$item] * $ratings2[$item];
 			$rating1Sum += $ratings1[$item];
 			$rating1SumSqr += pow($ratings1[$item], 2);
 			$rating2Sum += $ratings2[$item];
 			$rating2SumSqr += pow($ratings2[$item], 2); 
 		}
 		
-		if($coRatedItems == 0) {
+		// There is no correlation at all
+		if($numCoRatedItems == 0) {
 			return 0;
 		}
 		
 		$denominator = sqrt(
-			($rating1SumSqr - (pow($rating1Sum, 2)/$coRatedItems)) * 
-			($rating2SumSqr - (pow($rating2Sum, 2)/$coRatedItems))
+			($rating1SumSqr - (pow($rating1Sum, 2)/$numCoRatedItems)) * 
+			($rating2SumSqr - (pow($rating2Sum, 2)/$numCoRatedItems))
 		);
 		
 		if($denominator == 0) {
 			return 0;
 		}
 		
-		$paerson = $combinedSum - ( ( $rating1Sum * $rating2Sum) / $coRatedItems);
-		$paerson /= $denominator;
-		return $paerson;
+		// the closer abs(paerson) is to 1 to better correlation is it
+		$paerson = ( $dotProduct - ( $rating1Sum * $rating2Sum / $numCoRatedItems)) / $denominator;
+		return 1 - abs($paerson);
 	}
 }
