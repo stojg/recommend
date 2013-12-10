@@ -1,5 +1,5 @@
 before_commands:
-    - "composer install"
+    - "composer install --no-dev"
 
 filter:
     excluded_paths: [vendor/*]
