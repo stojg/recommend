@@ -49,6 +49,6 @@ class Minkowski
         if ($commonRatings) {
             return pow($distance, 1 / $this->r);
         }
-        return 0;
+        return false;
     }
 }

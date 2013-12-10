@@ -61,12 +61,20 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase
         $base = new Recommender('Hailey', $this->set);
         $recommendations = $base->recommend(new Paerson());
         $this->assertEquals(3, count($recommendations));
-        $this->assertEquals('Phoenix', $recommendations[0]['key']);
-        $this->assertEquals(4.0, $recommendations[0]['value']);
-        $this->assertEquals('Blues Traveler', $recommendations[1]['key']);
-        $this->assertEquals(3.0, $recommendations[1]['value']);
+        $this->assertEquals('Blues Traveler', $recommendations[0]['key']);
+        $this->assertEquals(5.0, $recommendations[0]['value']);
+        $this->assertEquals('Phoenix', $recommendations[1]['key']);
+        $this->assertEquals(5.0, $recommendations[1]['value']);
         $this->assertEquals('Slightly Stoopid', $recommendations[2]['key']);
-        $this->assertEquals(2.5, $recommendations[2]['value']);
+        $this->assertEquals(4.0, $recommendations[2]['value']);
+    }
+    
+    public function testRecommendPaersonNoMatch()
+    {
+        $set = json_decode(file_get_contents(__DIR__ . '/fixtures/users_nomatch.json'), true);
+        $base = new Recommender('Andrea', $set);
+        $recommendations = $base->recommend(new Paerson());
+        $this->assertEquals(0, count($recommendations));
     }
 
     public function testRecommendCosineHailey()
