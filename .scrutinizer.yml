@@ -3,7 +3,6 @@ filter:
 
 tools:
     php_code_coverage: true
-        config_path: ~
     php_cpd: true
     php_pdepend:
         excluded_dirs: [vendor]
