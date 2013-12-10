@@ -2,15 +2,21 @@
 
 namespace stojg\datamine;
 
+/**
+ * This class contains behaviour for finding recommendations 
+ * 
+ */
 class Recommender {
 	
 	/**
-	 *
+	 * This the 
+	 * 
 	 * @var array
 	 */
 	protected  $item = '';
 	
 	/**
+	 * This is the full dataset
 	 *
 	 * @var array
 	 */
@@ -18,8 +24,8 @@ class Recommender {
 
 	/**
 	 * 
-	 * @param string $item
-	 * @param array $set
+	 * @param string $item - a key from the set that we would like to find the best recommendations
+	 * @param array $set - The full dataset
 	 */
 	public function __construct($item, $set) {
 		$this->item = $item;
@@ -27,41 +33,56 @@ class Recommender {
 	}
 
 	/**
-	 * Give list of recommendations
+	 * Give a list of recommendations
 	 */
 	public function recommend($strategy) {
-		$nearest = $this->nearestNeighbor($strategy)[0]['key'];
+		$nearest = $this->findNearest($strategy);
 		$recommendations = array();
-		$neighborRatings = $this->set[$nearest];
-		$userRatings = $this->set[$this->item];
-		foreach($neighborRatings as $item => $rating) {
-			if(isset($userRatings[$item])) { continue; }
+		foreach($this->set[$nearest] as $item => $rating) {
+			// The item has been already been rated
+			if(isset($this->set[$this->item][$item])) { 
+				continue;
+			}
 			$recommendations[] = array('key' => $item, 'value' => $rating);
 		}
-		usort($recommendations, function($a, $b) {
-			 if($a['value'] < $b['value']) { return 1; }
-			 if($a['value'] > $b['value']) { return -1; }
-			 return 0;
-		 });
+		$this->sort($recommendations, false);
 		return $recommendations;
 	}
 
 	/**
-	 * creates a sorted list of users based on their distance to username
+	 * Find the nearest key that matching is closest to the item in the set
 	 * 
+	 * @return string 
 	 */
-	protected function nearestNeighbor($strategy) {
+	protected function findNearest($strategy) {
 		 $distances = array();
 		 foreach($this->set as $key => $itemData) {
-			 if($key == $this->item) { continue; }
+			 if($key == $this->item) {
+				 continue;
+			 }
 			 $distance = $strategy->run($itemData, $this->set[$this->item]);
 			 $distances[] = array('key' => $key, 'value' => $distance);
 		 }
-		 usort($distances, function($a, $b) {
-			 if($a['value'] > $b['value']) { return 1; }
-			 if($a['value'] < $b['value']) { return -1; }
+		 $this->sort($distances, true);
+		 return $distances[0]['key'];
+	}
+	
+	/**
+	 * sort an nested array that have a value attribute
+	 * 
+	 * i.e [ 0 => [ 'value' => 5 ], 1 => [ 'value' => 2 ] ]
+	 * 
+	 * @param array $distances
+	 * @param bool $ascending
+	 */
+	protected function sort(&$distances, $ascending=true) {
+		usort($distances, function($a, $b) use($ascending) {
+			 if($a['value'] > $b['value']) { 
+				 return ($ascending)? 1 : -1;
+			 } elseif($a['value'] < $b['value']) {
+				 return ($ascending)? -1 : 1;
+			 }
 			 return 0;
 		 });
-		 return $distances;
 	}
 }

@@ -4,6 +4,7 @@ namespace stojg\datamine\tests;
 
 use stojg\datamine\Recommender;
 use stojg\datamine\Manhattan;
+use stojg\datamine\Paerson;
 
 class RecommenderTest extends \PHPUnit_Framework_TestCase {
 	
@@ -14,7 +15,7 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase {
 		$this->set = json_decode($data, true);
 	}
 	
-	function testRecommendationHailey() {
+	function testRecommendManhattanHailey() {
 		$base = new Recommender('Hailey', $this->set);
 		$recommendations = $base->recommend(new Manhattan());
 		$this->assertEquals(3, count($recommendations));
@@ -26,7 +27,7 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(2.5, $recommendations[2]['value']);
 	}
 	
-	function testRecommendationsChan() {
+	function testRecommendManhattanChan() {
 		$base = new Recommender('Chan', $this->set);
 		$recommendations = $base->recommend(new Manhattan());
 		$this->assertEquals(2, count($recommendations));
@@ -34,18 +35,29 @@ class RecommenderTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(5.0, $recommendations[0]['value']);
 	}
 	
-	function testRecommendationsSam() {
+	function testRecommendManhattanSam() {
 		$base = new Recommender('Sam', $this->set);
 		$recommendations = $base->recommend(new Manhattan());
 		$this->assertEquals(1, count($recommendations));
-		$nearest = array_shift($recommendations);
-		$this->assertEquals('Deadmau5', $nearest['key']);
-		$this->assertEquals(1.0, $nearest['value']);
+		$this->assertEquals('Deadmau5', $recommendations[0]['key']);
+		$this->assertEquals(1.0, $recommendations[0]['value']);
 	}
 	
-	function testRecommendationsAngelica() {
+	function testRecommendManhattanAngelica() {
 		$base = new Recommender('Angelica', $this->set);
 		$recommendations = $base->recommend(new Manhattan());
 		$this->assertEquals(0, count($recommendations));
+	}
+	
+	function testRecommendPaersonHailey() {
+		$base = new Recommender('Hailey', $this->set);
+		$recommendations = $base->recommend(new Paerson());
+		$this->assertEquals(3, count($recommendations));
+		$this->assertEquals('Slightly Stoopid', $recommendations[0]['key']);
+		$this->assertEquals(3.5, $recommendations[0]['value']);
+		$this->assertEquals('Phoenix', $recommendations[1]['key']);
+		$this->assertEquals(2.0, $recommendations[1]['value']);
+		$this->assertEquals('Blues Traveler', $recommendations[2]['key']);
+		$this->assertEquals(2.0, $recommendations[2]['value']);
 	}
 }
