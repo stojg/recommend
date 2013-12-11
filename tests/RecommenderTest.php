@@ -68,7 +68,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Slightly Stoopid', $recommendations[2]['key']);
         $this->assertEquals(4.0, $recommendations[2]['value']);
     }
-    
+
     public function testRecommendPaersonNoMatch()
     {
         $set = json_decode(file_get_contents(__DIR__ . '/fixtures/users_nomatch.json'), true);
@@ -87,7 +87,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Phoenix', $recommendations[1]['key']);
         $this->assertEquals(5.0, $recommendations[1]['value']);
     }
-    
+
     public function testFromReadme()
     {
         $artistRatings = array(
@@ -117,12 +117,31 @@ class DataTest extends \PHPUnit_Framework_TestCase
                 "Slightly Stoopid" => 1
             )
         );
-        
+
         $data = new \stojg\recommend\Data($artistRatings);
         $recommendations = $data->recommend('Blair', new \stojg\recommend\strategy\Manhattan());
-        
         $this->assertEquals('Norah Jones', $recommendations[0]['key']);
         $this->assertEquals(4, $recommendations[0]['value']);
-        
+    }
+
+    public function testWithArticles()
+    {
+        $data = new \stojg\recommend\ArticleData();
+        $data->push('eagle', file_get_contents(__DIR__ . '/fixtures/article_eagle.txt'));
+        $data->push('kiwi', file_get_contents(__DIR__ . '/fixtures/article_kiwi.txt'));
+        $data->push('turtle', file_get_contents(__DIR__ . '/fixtures/article_turtle.txt'));
+        $data->push('quantum', file_get_contents(__DIR__ . '/fixtures/article_quantum.txt'));
+
+        $eagleNearest = $data->findNearest('eagle');
+        $this->assertEquals('kiwi', $eagleNearest, 'readers of eagle should read kiwi');
+
+        $kiwiNearest = $data->findNearest('kiwi');
+        $this->assertEquals('eagle', $kiwiNearest, 'readers of kiwi should read eagle');
+
+        $turtleNearest = $data->findNearest('turtle');
+        $this->assertEquals('eagle', $turtleNearest, 'turtle of eagle should read eagle');
+
+        $quantumNearest = $data->findNearest('quantum');
+        $this->assertEquals('turtle', $quantumNearest, 'readers of quantum should read turtle');
     }
 }

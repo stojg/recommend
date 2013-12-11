@@ -62,7 +62,7 @@ class Data
      *
      * @return string
      */
-    protected function findNearest($for, $strategy)
+    public function findNearest($for, $strategy)
     {
         $distances = array();
         foreach ($this->set as $key => $itemData) {

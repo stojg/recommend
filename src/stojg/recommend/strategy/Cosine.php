@@ -27,6 +27,9 @@ class Cosine
             $sqrLenght1 += pow($rating, 2);
             $dotProduct += $rating * $rating2[$item];
         }
+        if (!$sqrLenght1) {
+            return false;
+        }
         $length1 = sqrt($sqrLenght1);
 
         $sqrLength2 = 0;
