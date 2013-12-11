@@ -50,10 +50,13 @@ Presume that we have some data where users have rated artists within a scale of 
 		)
     );
 
-If we want to find artists that _Blair_ might like, we run the `Recommender` like this:
+Start with loading this data into the Data class
 
-	$recommender = new \stojg\datamine\Recommender('Blair', $artistRatings);
-	$recommendations = $recommender->recommend(new \stojg\datamine\strategy\Manhattan());
+	$data = new \stojg\recommend\Data($artistRatings);
+
+If we want to find artists that _Blair_ might like, we execute the recommend method.
+
+	$recommendations = $data->recommend('Blair', new \stojg\recommend\strategy\Manhattan());
 	var_export($recommendations);
 
 The result of that computation would be:

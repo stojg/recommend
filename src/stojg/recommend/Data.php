@@ -3,15 +3,15 @@
 namespace stojg\recommend;
 
 /**
- * This class contains behaviour for finding recommendations 
- * 
+ * This class contains behaviour for finding recommendations
+ *
  */
 class Data
 {
 
     /**
-     * This the 
-     * 
+     * This the
+     *
      * @var array
      */
     protected $item = '';
@@ -24,29 +24,31 @@ class Data
     protected $set = array();
 
     /**
-     * 
-     * @param string $item - a key from the set that we would like to find the best recommendations
+     *
      * @param array $set - The full dataset
      */
-    public function __construct($item, $set)
+    public function __construct($set)
     {
-        $this->item = $item;
         $this->set = $set;
     }
 
     /**
-     * Give a list of recommendations
+     * Return a list of recommendations
+     *
+     * @param string $for - the item we want recommendations for
+     * @param Object $strategy
+     * @return array
      */
-    public function recommend($strategy)
+    public function recommend($for, $strategy)
     {
-        $nearest = $this->findNearest($strategy);
+        $nearest = $this->findNearest($for, $strategy);
         if ($nearest === false) {
             return array();
         }
         $recommendations = array();
         foreach ($this->set[$nearest] as $item => $rating) {
             // The item has been already been rated
-            if (isset($this->set[$this->item][$item])) {
+            if (isset($this->set[$for][$item])) {
                 continue;
             }
             $recommendations[] = array('key' => $item, 'value' => $rating);
@@ -57,17 +59,17 @@ class Data
 
     /**
      * Find the nearest key that matching is closest to the item in the set
-     * 
-     * @return string 
+     *
+     * @return string
      */
-    protected function findNearest($strategy)
+    protected function findNearest($for, $strategy)
     {
         $distances = array();
         foreach ($this->set as $key => $itemData) {
-            if ($key == $this->item) {
+            if ($key == $for) {
                 continue;
             }
-            $distance = $strategy->run($itemData, $this->set[$this->item]);
+            $distance = $strategy->run($itemData, $this->set[$for]);
             if ($distance === false) {
                 continue;
             }
@@ -82,18 +84,18 @@ class Data
 
     /**
      * sort an nested array that have a value attribute
-     * 
+     *
      * i.e [ 0 => [ 'value' => 5 ], 1 => [ 'value' => 2 ] ]
-     * 
+     *
      * @param array $distances
      * @param bool $ascending
      */
     protected function sort(&$distances, $ascending = true)
     {
-        usort($distances, function ($a, $b) use ($ascending) {
-            if ($a['value'] > $b['value']) {
+        usort($distances, function ($first, $second) use ($ascending) {
+            if ($first['value'] > $second['value']) {
                 return ($ascending) ? 1 : -1;
-            } elseif ($a['value'] < $b['value']) {
+            } elseif ($first['value'] < $second['value']) {
                 return ($ascending) ? -1 : 1;
             }
             return 0;
