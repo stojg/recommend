@@ -1,26 +1,26 @@
 {
-    "name": "stojg/recommend",
-    "type": "library",
-    "description": "Library for mining",
-    "keywords": [],
-    "homepage": "https://github.com/stojg/recommend/",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Stig Lindqvist",
-            "email": "stojg.lindqvist@gmail.com"
-        }
-    ],
+	"name": "stojg/recommend",
+	"type": "library",
+	"description": "Library for mining",
+	"keywords": [],
+	"homepage": "https://github.com/stojg/recommend/",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Stig Lindqvist",
+			"email": "stojg.lindqvist@gmail.com"
+		}
+	],
 	"autoload": {
-    "psr-0": {
-        "stojg\\recommend\\": "src/"
+		"psr-0": {
+			"stojg\\recommend\\": "src/"
 		}
 	},
-    "require": {
-        "php": ">=5.3.3"
-    },
+	"require": {
+		"php": ">=5.3.3"
+	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
 	},
-    "minimum-stability": "dev"
+	"minimum-stability": "dev"
 }

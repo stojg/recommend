@@ -10,6 +10,7 @@ use stojg\recommend\strategy\Cosine;
  */
 class ArticleData extends Data
 {
+
     /**
      *
      * @var array
@@ -41,7 +42,7 @@ class ArticleData extends Data
         "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon",
         "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will",
         "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the");
-    
+
     /**
      * 
      * @param array $set
@@ -51,7 +52,7 @@ class ArticleData extends Data
         // Noop - We want to start off with a clean set and use the push method to add
         // data to the set
     }
-    
+
     /**
      * 
      * @param string $identifier
@@ -61,7 +62,7 @@ class ArticleData extends Data
     {
         $this->set[$identifier] = $this->getWordCount($content);
     }
-    
+
     /**
      * 
      * @param string $for
@@ -74,18 +75,23 @@ class ArticleData extends Data
         }
         return parent::findNearest($for, $strategy);
     }
-    
+
     /**
+     * Get an array of words from the content and a count of how many times
+     * they appear in the text.
+     * 
+     * Note that this method is naive and can't tell the similarity between 'bird' and 'birds'.
      * 
      * @param string $content
      * @return array
      */
     protected function getWordCount($content)
     {
-        $words = str_word_count(strip_tags(strtolower($content)), 1);
+        $content = strip_tags(strtolower((preg_replace('/\s+/', ' ', $content))));
+        $words = str_word_count($content, 1);
         $filteredWords = array_diff($words, $this->stopWords);
         $countedWords = array_count_values($filteredWords);
-        arsort($countedWords);
+        ksort($countedWords);
         return $countedWords;
     }
 }
