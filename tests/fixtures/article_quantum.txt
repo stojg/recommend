@@ -1,0 +1,17 @@
+Quantum mechanics (QM – also known as quantum physics, or quantum theory) is a branch of physics which deals with 
+physical phenomena at microscopic scales, where the action is on the order of the Planck constant. It departs from 
+classical mechanics primarily at the quantum realm of atomic and subatomic length scales. Quantum mechanics provides a 
+mathematical description of much of the dual particle-like and wave-like behavior and interactions of energy and matter.
+It is the non-relativistic limit of quantum field theory (QFT), a theory that was developed later that combined quantum 
+mechanics with relativity.
+
+In advanced topics of quantum mechanics, some of these behaviors are macroscopic (see macroscopic quantum phenomena) and
+emerge at only extreme (i.e., very low or very high) energies or temperatures (such as in the use of superconducting 
+magnets). The name quantum mechanics derives from the observation that some physical quantities can change only in 
+discrete amounts (Latin quanta), and not in a continuous (cf. analog) way. For example, the angular momentum of an 
+electron bound to an atom or molecule is quantized. In the context of quantum mechanics, the wave–particle duality of
+energy and matter and the uncertainty principle provide a unified view of the behavior of photons, electrons, and other
+atomic-scale objects.
+
+The mathematical formulations of quantum mechanics are abstract. A mathematical function known as the wavefunction 
+provides information about the probability amplitude of position, momentum, and other physical properties of a particle.
