@@ -10,11 +10,15 @@ use stojg\recommend\strategy\Cosine;
 class DataTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     *
+     * @var array
+     */
     protected $set;
 
     public function setUp()
     {
-        $data = file_get_contents(__DIR__ . '/fixtures/users.json');
+        $data = $this->getFixture('users.json');
         $this->set = json_decode($data, true);
     }
 
@@ -127,10 +131,10 @@ class DataTest extends \PHPUnit_Framework_TestCase
     public function testWithArticles()
     {
         $data = new \stojg\recommend\ArticleData();
-        $data->push('eagle', file_get_contents(__DIR__ . '/fixtures/article_eagle.txt'));
-        $data->push('kiwi', file_get_contents(__DIR__ . '/fixtures/article_kiwi.txt'));
-        $data->push('turtle', file_get_contents(__DIR__ . '/fixtures/article_turtle.txt'));
-        $data->push('quantum', file_get_contents(__DIR__ . '/fixtures/article_quantum.txt'));
+        $data->push('eagle', $this->getFixture('article_eagle.txt'));
+        $data->push('kiwi', $this->getFixture('article_kiwi.txt'));
+        $data->push('turtle', $this->getFixture('article_turtle.txt'));
+        $data->push('quantum', $this->getFixture('article_quantum.txt'));
 
         $eagleNearest = $data->findNearest('eagle');
         $this->assertEquals('kiwi', $eagleNearest, 'readers of eagle should read kiwi');
@@ -142,6 +146,11 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('eagle', $turtleNearest, 'turtle of eagle should read eagle');
 
         $quantumNearest = $data->findNearest('quantum');
-        $this->assertEquals('turtle', $quantumNearest, 'readers of quantum should read turtle');
+        $this->assertEquals('eagle', $quantumNearest, 'readers of quantum should read eagle');
+    }
+    
+    protected function getFixture($fixtureFileName)
+    {
+        return file_get_contents(__DIR__ . '/fixtures/'.$fixtureFileName);
     }
 }
