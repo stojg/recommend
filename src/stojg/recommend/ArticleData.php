@@ -75,7 +75,46 @@ class ArticleData extends Data
         }
         return parent::findNearest($for, $strategy);
     }
-
+	
+    /**
+     * Return a list of recommendations
+     *
+     * @param string $for - the item we want recommendations for
+     * @param Object $strategy
+     * @return array - return a list of identifier ordered by closest
+     */
+    public function recommend($for, $strategy=null)
+    {
+		if ($strategy === null) {
+            $strategy = new Cosine();
+        }
+		
+		$distances = array();
+        foreach ($this->set as $key => $itemData) {
+            if ($key == $for) {
+                continue;
+            }
+            $distance = $strategy->run($itemData, $this->set[$for]);
+            if ($distance === false) {
+                continue;
+            }
+            $distances[$key] = array('key' => $key, 'value' => $distance);
+        }
+        if (!count($distances)) {
+            return false;
+        }
+        $this->sort($distances, true);
+		
+		$data = array();
+		foreach($distances as $article){
+			if($article['value'] == 0) {
+				continue;
+			}
+			$data[] = $article['key'];
+		}
+        return $data;
+    }
+	
     /**
      * Get an array of words from the content and a count of how many times
      * they appear in the text.
