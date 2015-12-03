@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/stojg/recommend.png?branch=master)](https://travis-ci.org/stojg/recommend)
 [![Code Coverage](https://scrutinizer-ci.com/g/stojg/recommend/badges/coverage.png?s=5938cb4642b77c2ea081f4771f096134b93d3494)](https://scrutinizer-ci.com/g/stojg/recommend/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/stojg/recommend/badges/quality-score.png?s=ccc1fe675b9e51fc87694d5a09b509bf0d1352f9)](https://scrutinizer-ci.com/g/stojg/recommend/)
+[![StyleCI](https://styleci.io/repos/15030893/shield)](https://styleci.io/repos/15030893)
 
 This library should make it easier to find recommendations and similarities between different things. There are a couple of 
 use cases that I developed it for:
