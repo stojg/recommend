@@ -3,24 +3,20 @@
 namespace stojg\recommend\strategy;
 
 /**
- * Computes the Minkowski distance
+ * Computes the Minkowski distance.
  * 
  * If the data is dense (almost all attributes have a non
  * zero value) and the magnitude of the attributes values
  * are important, this is a good similarity comparisator
- *
  */
 class Minkowski
 {
-
     /**
-     *
      * @var int
      */
     protected $r = 1;
 
     /**
-     * 
      * @param int $r
      */
     public function __construct($r = 1)
@@ -29,9 +25,8 @@ class Minkowski
     }
 
     /**
-     * 
      * Both rating1 and rating2 are an array of the form
-     * ['The Strokes'=> 3.0, 'Slightly Stoopid' =>  2.5, ...]
+     * ['The Strokes'=> 3.0, 'Slightly Stoopid' =>  2.5, ...].
      * 
      * @param array $rating1
      * @param array $rating2
@@ -49,6 +44,7 @@ class Minkowski
         if ($commonRatings) {
             return pow($distance, 1 / $this->r);
         }
+
         return false;
     }
 }

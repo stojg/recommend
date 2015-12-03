@@ -3,17 +3,16 @@
 namespace stojg\recommend\strategy;
 
 /**
- * Use if the data is subject to grade-inﬂation (different users may be using different scales) 
- *
+ * Use if the data is subject to grade-inﬂation (different users may be using different scales).
  */
 class Paerson
 {
-
     /**
-     * Single pass version of the paerson
+     * Single pass version of the paerson.
      * 
      * @param array $ratings1
-     * @param array  $ratings2
+     * @param array $ratings2
+     *
      * @return float
      */
     public function run($ratings1, $ratings2)
@@ -51,7 +50,8 @@ class Paerson
         }
 
         // the closer abs(paerson) is to 1 to better correlation is it
-        $paerson = ( $dotProduct - ( $rating1Sum * $rating2Sum / $numCoRatedItems)) / $denominator;
+        $paerson = ($dotProduct - ($rating1Sum * $rating2Sum / $numCoRatedItems)) / $denominator;
+
         return 1 - abs($paerson);
     }
 }

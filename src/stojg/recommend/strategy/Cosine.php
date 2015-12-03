@@ -7,14 +7,12 @@ namespace stojg\recommend\strategy;
  * cosine of the angle between them. The cosine of 0° is 1, and it is less than 1 for any other angle. It is thus a 
  * judgement of orientation and not magnitude: two vectors with the same orientation have a Cosine similarity of 1, 
  * two vectors at 90° have a  similarity of 0, and two vectors diametrically opposed have a similarity of -1, 
- * independent of their magnitude
- *
+ * independent of their magnitude.
  */
 class Cosine
 {
-
     /**
-     * Use if the data is sparse 
+     * Use if the data is sparse.
      */
     public function run($rating1, $rating2)
     {
