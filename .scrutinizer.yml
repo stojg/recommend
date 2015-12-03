@@ -4,6 +4,11 @@ before_commands:
 filter:
     excluded_paths: [vendor/*]
 
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
 tools:
     php_analyzer: true
     sensiolabs_security_checker: true
