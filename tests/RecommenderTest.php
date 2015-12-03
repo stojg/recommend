@@ -3,15 +3,13 @@
 namespace stojg\recommend\tests;
 
 use stojg\recommend\Data;
+use stojg\recommend\strategy\Cosine;
 use stojg\recommend\strategy\Manhattan;
 use stojg\recommend\strategy\Paerson;
-use stojg\recommend\strategy\Cosine;
 
-class DataTest extends \PHPUnit_Framework_TestCase
+class RecommenderTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
-     *
      * @var array
      */
     protected $set;
@@ -75,7 +73,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
 
     public function testRecommendPaersonNoMatch()
     {
-        $set = json_decode(file_get_contents(__DIR__ . '/fixtures/users_nomatch.json'), true);
+        $set = json_decode(file_get_contents(__DIR__.'/fixtures/users_nomatch.json'), true);
         $data = new Data($set);
         $recommendations = $data->recommend('Andrea', new Paerson());
         $this->assertEquals(0, count($recommendations));
@@ -94,33 +92,33 @@ class DataTest extends \PHPUnit_Framework_TestCase
 
     public function testFromReadme()
     {
-        $artistRatings = array(
-            "Abe" => array(
-                "Blues Traveler" => 3,
-                "Broken Bells" => 2,
-                "Norah Jones" => 4,
-                "Phoenix" => 5,
-                "Slightly Stoopid" => 1,
-                "The Strokes" => 2,
-                "Vampire Weekend" => 2
-            ),
-            "Blair" => array(
-                "Blues Traveler" => 2,
-                "Broken Bells" => 3,
-                "Deadmau5" => 4,
-                "Phoenix" => 2,
-                "Slightly Stoopid" => 3,
-                "Vampire Weekend" => 3
-            ),
-            "Clair" => array(
-                "Blues Traveler" => 5,
-                "Broken Bells" => 1,
-                "Deadmau5" => 1,
-                "Norah Jones" => 3,
-                "Phoenix" => 5,
-                "Slightly Stoopid" => 1
-            )
-        );
+        $artistRatings = [
+            'Abe' => [
+                'Blues Traveler'   => 3,
+                'Broken Bells'     => 2,
+                'Norah Jones'      => 4,
+                'Phoenix'          => 5,
+                'Slightly Stoopid' => 1,
+                'The Strokes'      => 2,
+                'Vampire Weekend'  => 2,
+            ],
+            'Blair' => [
+                'Blues Traveler'   => 2,
+                'Broken Bells'     => 3,
+                'Deadmau5'         => 4,
+                'Phoenix'          => 2,
+                'Slightly Stoopid' => 3,
+                'Vampire Weekend'  => 3,
+            ],
+            'Clair' => [
+                'Blues Traveler'   => 5,
+                'Broken Bells'     => 1,
+                'Deadmau5'         => 1,
+                'Norah Jones'      => 3,
+                'Phoenix'          => 5,
+                'Slightly Stoopid' => 1,
+            ],
+        ];
 
         $data = new \stojg\recommend\Data($artistRatings);
         $recommendations = $data->recommend('Blair', new \stojg\recommend\strategy\Manhattan());
@@ -148,9 +146,9 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $quantumNearest = $data->findNearest('quantum');
         $this->assertEquals('eagle', $quantumNearest, 'readers of quantum should read eagle');
     }
-    
+
     protected function getFixture($fixtureFileName)
     {
-        return file_get_contents(__DIR__ . '/fixtures/'.$fixtureFileName);
+        return file_get_contents(__DIR__.'/fixtures/'.$fixtureFileName);
     }
 }
